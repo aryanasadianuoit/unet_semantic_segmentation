@@ -5,11 +5,11 @@ import torchvision
 
 
 
-def save_checkpoint(state, filename="/home/aasadian/interactive_seg/my_checkpoint.pth.tar"):
+def save_checkpoint(state, filename="/interactive_seg/my_checkpoint.pth.tar"):
     print("=> Saving checkpoint")
     torch.save(state, filename)
 
-def load_checkpoint(checkpoint, model,path="/home/aasadian/interactive_seg/"):
+def load_checkpoint(checkpoint, model,path="/interactive_seg/"):
     print("=> Loading checkpoint")
     model.load_state_dict(path+checkpoint["state_dict"])
 
@@ -46,14 +46,15 @@ def accuracy(model,data_loader,device):
             dice_score += (2 * (preds * target).sum()) / (
                     (preds + target).sum() + 1e-8
             )
-
+        
+        #Dice Score ===> https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient
     print(f"Validation Acc ===> {(num_correct_pixels / num_total_pixels) * 100:.2f}   Dice Score : {dice_score/len(data_loader):.2f}")
 
     model.train()
 
 
 def save_predictions_as_imgs(
-    loader, model, folder="/home/aasadian/interactive_seg/preds/", device="cuda"):
+    loader, model, folder="/interactive_seg/preds/", device="cuda"):
     model.eval()
     for idx, (image, target) in enumerate(loader):
         image = image.to(device=device)
