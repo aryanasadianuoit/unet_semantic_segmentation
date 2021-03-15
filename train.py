@@ -6,7 +6,7 @@ from general_utils import save_predictions_as_imgs,load_checkpoint,save_checkpoi
 from dataloader2 import get_data_loaders
 
 LEARNING_RATE = 1e-4
-DEVICE = "cuda:3" if torch.cuda.is_available() else "cpu"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH_SIZE = 8
 NUM_EPOCHS = 60
 # for less computation, I have resizd the images to (240,240)
@@ -73,7 +73,7 @@ def main():
        save_checkpoint(state=checkpoint)
        accuracy(model,data_loader_dict["val"],device=DEVICE)
        save_predictions_as_imgs(data_loader_dict["val"],model,device=DEVICE,
-                             folder="/home/aasadian/interactive_seg/saved_images/")
+                             folder="/saved_images/")
 
 
 
