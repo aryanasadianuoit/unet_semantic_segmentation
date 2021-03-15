@@ -5,10 +5,12 @@ from PIL import Image
 from torchvision import transforms
 
 
+#dataset : InteractiveSegmentation  
+#kaggle link : https://www.kaggle.com/4quant/interactivesegmentation
 
 class Interactive_Segmentation_DS(Dataset):
-    def __init__(self, img_dir="/home/aasadian/interactive_seg/is_ds/images",
-                 mask_dir = "/home/aasadian/interactive_seg/is_ds/masks",
+    def __init__(self, img_dir="/interactive_seg/is_ds/images",
+                 mask_dir = "/interactive_seg/is_ds/masks",
                  transform = None):
 
         self.img_dir = img_dir
